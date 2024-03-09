@@ -1,0 +1,51 @@
+<!-- <section class="bg-main-light w-75 mx-auto m-5 p-3 rounded-2 shadow">
+  <form [formGroup]="checkOut" (ngSubmit)="checkout()">
+    <div>
+      <label class="mb-2" for="details">Details</label>
+      <textarea  id="details" class="form-control " formControlName="details" placeholder="details"></textarea>
+    </div>
+    <div class="my-4">
+      <label class="mb-2" for="phone">Phone</label>
+      <input type="tel" id="phone" class="form-control" formControlName="phone" placeholder="your phone"/>
+    </div>
+    <div>
+      <label class="mb-2" for="city">City</label>
+      <input type="text" id="city" class="form-control" formControlName="city" placeholder="your city"/>
+    </div>
+    <button class="btn bg-main text-white mt-3">Check Out</button>
+  </form>
+</section> -->
+
+<section class="bg-main-light w-75 mx-auto rounded shadow p-3 mb-3">
+  <h3 class="text-center">check out</h3>
+  <form [formGroup]="checkOut" (submit)="checkout()">
+
+  <div class="form-item mb-3">
+      <label for="details"> details :</label>
+      <input class="form-control" type="text" formControlName="details" id="details" >
+      <div *ngIf="checkOut.get('details')?.errors && checkOut.get('details')?.touched" class="alert alert-danger mt-2">
+          <p *ngIf="checkOut.get('details')?.errors?.['required']">details Is Requierd</p>
+      </div>
+
+  </div>
+
+  <div class="form-item mb-3">
+      <label for="phone"> phone :</label>
+      <input class="form-control " type="tel" formControlName="phone" id="phone" >
+      <div *ngIf="checkOut.get('phone')?.errors && checkOut.get('phone')?.touched" class="alert alert-danger mt-2">
+          <p *ngIf="checkOut.get('phone')?.errors?.['required']">Phone Is Requierd</p>
+          <p *ngIf="checkOut.get('phone')?.errors?.['pattern']">Enter Valid Phone Number</p>
+      </div>
+  </div>
+
+  <div class="form-item">
+      <label for="city"> city :</label>
+      <input class="form-control " type="text" formControlName="city" id="city" >
+      <div *ngIf="checkOut.get('city')?.errors && checkOut.get('city')?.touched" class="alert alert-danger mt-2">
+          <p *ngIf="checkOut.get('city')?.errors?.['required']">City Is Requierd</p>
+      </div>
+  </div>
+
+  <button type="submit" class="btn bg-main text-white mt-2 d-block ms-auto" [disabled]="checkOut.invalid">Pay Now</button>
+ </form>
+</section>
